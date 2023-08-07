@@ -1,0 +1,10 @@
+.mainwrapper {
+  background: "#F4F5F7";
+}
+
+.contentwrapper {
+  padding-left: 245px;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+}

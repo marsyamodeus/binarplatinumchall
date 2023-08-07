@@ -1,0 +1,43 @@
+.thebutton {
+  color: #aeb7e1;
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  padding: 5px 35px;
+  margin-right: 15px;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid #aeb7e1;
+}
+
+.thebutton:hover {
+  background: #cfd4ed;
+  border: 1px solid;
+  border-color: #0d28a6;
+  color: #0d28a6;
+}
+
+.thebutton:active {
+  background: #cfd4ed;
+  border: 1px solid;
+  border-color: #0d28a6;
+  color: #0d28a6;
+}
+
+.thebutton.active {
+  background: #cfd4ed;
+  border: 1px solid;
+  border-color: #0d28a6;
+  color: #0d28a6;
+}
+
+.theaddbutton {
+  display: inline-flex;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 2px;
+  background: #0d28a6;
+}

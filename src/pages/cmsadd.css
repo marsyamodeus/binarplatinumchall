@@ -1,0 +1,50 @@
+.addnewcartxt {
+  color: var(--neutral-01, #000);
+  font-family: Arial;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 150% */
+}
+
+.bottombtnset {
+  padding-top: 314px;
+}
+
+.cancelbtn {
+  display: inline-flex;
+  padding: 8px 12px;
+  margin-right: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 2px;
+  border: 1px solid #0d28a6;
+  background: white;
+
+  color: #0d28a6;
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+}
+
+.savebtn {
+  display: inline-flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 2px;
+  background: #0d28a6;
+
+  color: white;
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+}

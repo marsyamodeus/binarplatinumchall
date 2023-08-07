@@ -1,0 +1,74 @@
+.cardcont {
+  display: flex;
+  width: 351px;
+  height: auto;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+
+  background: #fff;
+
+  /* Shadow/Low */
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.cardimgcont {
+  width: 303px;
+  height: 222px;
+}
+
+.cardimg {
+  width: 303px;
+  height: 222px;
+  flex-shrink: 0;
+}
+
+.cardinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.delbutt {
+  display: flex;
+  height: 48px;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+
+  border-radius: 2px;
+  border: 1px solid #fa2c5a;
+  background: white;
+
+  color: var(--allert-danger, #fa2c5a);
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+}
+
+.editbutt {
+  display: flex;
+  height: 48px;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex: 1 0 0;
+
+  border-radius: 2px;
+  background: #5cb85f;
+
+  color: var(--neutral-10, #fff);
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+}

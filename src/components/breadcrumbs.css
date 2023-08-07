@@ -1,0 +1,16 @@
+.breaditem {
+  color: black;
+  font-family: Arial;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px; /* 150% */
+}
+
+.separator {
+  margin: 0 5px;
+}
+
+.breadcrumbs .breadcrumb-item::before {
+  content: none;
+}
