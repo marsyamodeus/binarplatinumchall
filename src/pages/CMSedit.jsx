@@ -9,6 +9,8 @@ import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 
+import "./cmsedit.css";
+
 export default function EditCar() {
   const [data, setData] = useState({});
   const { id } = useParams();
@@ -90,15 +92,15 @@ export default function EditCar() {
         setShowToast(true);
       })
       .catch((err) => console.log(err));
-      setTimeout(() => {
+    setTimeout(() => {
       navigate("/cars");
-      }, 3000);
+    }, 3000);
   };
 
   return (
     <Container>
       <div className="d-flex justify-content-between align-items-center pt-3 pb-2">
-        <h3 className="">Edit Car</h3>
+        <h3 className="editcartxt">Edit Car</h3>
       </div>
       {showToast && (
         <div style={{ position: "relative" }}>
@@ -112,68 +114,104 @@ export default function EditCar() {
         </div>
       )}
       <Form>
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-          <Form.Label column sm="2">
-            Email
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control
-              type="name"
-              name="name"
-              value={name}
-              onChange={handleChangeName}
-              placeholder={data.name}
-            />
-          </Col>
-        </Form.Group>
+        <div style={{ background: "white", padding: "16px" }}>
+          <Form.Group
+            as={Row}
+            className="mb-3"
+            controlId="formPlaintextPassword"
+          >
+            <Form.Label column sm="2">
+              Nama
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control
+                type="name"
+                name="name"
+                value={name}
+                onChange={handleChangeName}
+                placeholder={data.name}
+              />
+            </Col>
+          </Form.Group>
 
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-          <Form.Label column sm="2">
-            Harga
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control
-              name="price"
-              value={price}
-              onChange={handleChangePrice}
-              type=""
-              placeholder={data.price}
-            />
-          </Col>
-        </Form.Group>
+          <Form.Group
+            as={Row}
+            className="mb-3"
+            controlId="formPlaintextPassword"
+          >
+            <Form.Label column sm="2">
+              Harga
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control
+                name="price"
+                value={price}
+                onChange={handleChangePrice}
+                type=""
+                placeholder={data.price}
+              />
+            </Col>
+          </Form.Group>
 
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-          <Form.Label column sm="2">
-            Gambar
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control
-              onChange={handleChangePhoto}
-              type="file"
-              name="image"
-              placeholder={data.img}
-            />
-          </Col>
-        </Form.Group>
+          <Form.Group
+            as={Row}
+            className="mb-3"
+            controlId="formPlaintextPassword"
+          >
+            <Form.Label column sm="2">
+              Foto
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control
+                onChange={handleChangePhoto}
+                type="file"
+                name="image"
+                placeholder={data.img}
+              />
+            </Col>
+          </Form.Group>
 
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-          <Form.Label column sm="2">
-            Kategori
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control
-              name="category"
-              value={category}
-              onChange={handleChangeCategory}
-              type=""
-              placeholder={data.category}
-            />
-          </Col>
-        </Form.Group>
+          <Form.Group
+            as={Row}
+            className="mb-3"
+            controlId="formPlaintextPassword"
+          >
+            <Form.Label column sm="2">
+              Kategori
+            </Form.Label>
+            <Col sm="10">
+              <Form.Select
+                name="category"
+                value={category}
+                onChange={handleChangeCategory}
+                style={{ width: "50%" }}
+              >
+                {" "}
+                <option value="">Select category</option>
+                <option value="small">2 - 4 orang</option>
+                <option value="medium">4 - 6 orang</option>
+                <option value="large">6 - 8 orang</option>
+              </Form.Select>
+            </Col>
+          </Form.Group>
+        </div>
       </Form>
-      <Button variant="primary" disabled="" onClick={handleSubmit}>
-        Click
-      </Button>
+      <div className="bottombtnset">
+        <Button
+          className="cancelbtn"
+          variant="outline-primary"
+          onClick={() => navigate("/cars")}
+        >
+          Cancel
+        </Button>
+        <Button
+          className="savebtn"
+          variant="outline-primary"
+          onClick={handleSubmit}
+        >
+          Save
+        </Button>
+      </div>
     </Container>
   );
 }

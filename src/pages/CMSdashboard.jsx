@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./cmsdashboard.css";
 import DataChart from "../components/DataChart";
+import MonthSelector from "../components/MonthSelector";
 
 const CMSdashboard = () => {
   const navigate = useNavigate();
@@ -18,11 +19,9 @@ const CMSdashboard = () => {
     <div>
       <p className="titletext">Rented Car Data Visualization</p>
 
-      <div>Month picker</div>
       <div>
         <DataChart />
       </div>
-      <div>THE TABLE</div>
     </div>
   );
 };

@@ -19,6 +19,8 @@ import Carscard from "../components/Carscard";
 import ModalsDel from "../components/ModalsDel";
 import Sortbutton from "../components/Sortbutton";
 
+import { useSelector } from "react-redux";
+
 const CMScars = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -41,6 +43,10 @@ const CMScars = () => {
       navigate("/cmssignin");
     }
   });
+  const searchTerm = useSelector((state) => state.search.searchTerm);
+  const filteredData = data.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const getDetailedData = async () => {
     try {
@@ -80,7 +86,7 @@ const CMScars = () => {
           access_token: localStorage.getItem("admin_token"),
         },
       })
-      // .then((res) => console.log(res))
+
       .then((res) => {
         setShow(false);
         setmodalId(null);
@@ -133,7 +139,7 @@ const CMScars = () => {
               deleteButton={() => handleDelete(modalId)}
             />
           )}{" "}
-          {data.map((item) => (
+          {filteredData.map((item) => (
             <Col className="pb-4">
               <Carscard
                 carimage={item.image}

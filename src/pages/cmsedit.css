@@ -1,0 +1,12 @@
+.editcartxt {
+  color: var(--neutral-01, #000);
+  font-family: Arial;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px; /* 150% */
+}
+
+.bottombtnset {
+  padding-top: 314px;
+}
