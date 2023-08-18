@@ -11,6 +11,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import "./cmslayout.css";
 
 import { BiMenu, BiHomeAlt, BiSolidTruck, BiSearchAlt2 } from "react-icons/bi";
+import navbarlogo from "../assets/Rectangle 62.png";
 import sidebarlogo from "../assets/Rectangle 63.png";
 
 const CMSLayout = () => {
@@ -63,8 +64,7 @@ const CMSLayout = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    window.location.reload(false);
-    setToken("");
+    navigate("cmssignin");
   };
   return (
     <>
@@ -74,7 +74,7 @@ const CMSLayout = () => {
             <img
               className="top-icon"
               style={{ width: "100px", height: "34px" }}
-              src="../src/assets/Rectangle 62.png"
+              src={navbarlogo}
             />
           </div>
           <div className="right-nav">
@@ -115,7 +115,7 @@ const CMSLayout = () => {
                 <img
                   className="rectangle"
                   style={{ width: "34px" }}
-                  src="../src/assets/Rectangle 63.png"
+                  src={sidebarlogo}
                   onClick={toggleNav}
                 />
               </div>
