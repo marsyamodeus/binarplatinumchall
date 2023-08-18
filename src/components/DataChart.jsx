@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Container } from "react-bootstrap";
 import axios from "axios";
 //react chart-related//
 import { Bar } from "react-chartjs-2";
@@ -33,8 +34,17 @@ const DataChart = () => {
   const [chosenMonth, setChosenMonth] = useState(new Date().getMonth() + 1);
   const [chosenPageSize, setChosenPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
+  const [totalPages, setTotalPages] = useState();
+  const sortingUrls = {
+    createdAtDesc: `https://api-car-rental.binaracademy.org/admin/v2/order?sort=created_at%3Adesc&page=${currentPage}&pageSize=${chosenPageSize}`,
+    carNameAsc: `https://api-car-rental.binaracademy.org/admin/v2/order?sort=car_name%3Aasc&page=${currentPage}&pageSize=${chosenPageSize}`,
+    carNameDesc: `https://api-car-rental.binaracademy.org/admin/v2/order?sort=car_name%3Adesc&page=${currentPage}&pageSize=${chosenPageSize}`,
+    userEmailAsc: `https://api-car-rental.binaracademy.org/admin/v2/order?sort=user_email%3Aasc&page=${currentPage}&pageSize=${chosenPageSize}`,
+    userEmailDesc: `https://api-car-rental.binaracademy.org/admin/v2/order?sort=user_email%3Adesc&page=${currentPage}&pageSize=${chosenPageSize}`,
+  };
+  const [currentSortingUrl, setCurrentSortingUrl] = useState(
+    sortingUrls.createdAtDesc
+  );
   const handleMonthChange = (e) => {
     setChosenMonth(parseInt(e.target.value));
   };
@@ -42,24 +52,31 @@ const DataChart = () => {
   const handlePageSizeChange = (e) => {
     const newSize = parseInt(e.target.value);
     setChosenPageSize(newSize);
-    getOrderData(newSize);
+    setCurrentPage(1);
+    setCurrentSortingUrl((prevUrl) =>
+      prevUrl.replace(/pageSize=\d+/, `pageSize=${newSize}`)
+    );
   };
 
   const handlePageJump = (e) => {
     const newPage = parseInt(e.target.value);
     setCurrentPage(newPage);
-    getOrderData(chosenPageSize, newPage);
+    setCurrentSortingUrl((prevUrl) =>
+      prevUrl.replace(/page=\d+/, `page=${newPage}`)
+    );
   };
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
-    getOrderData(chosenPageSize, newPage);
+    setCurrentSortingUrl((prevUrl) =>
+      prevUrl.replace(/page=\d+/, `page=${newPage}`)
+    );
   };
 
   useEffect(() => {
     getReportData();
     getOrderData();
-  }, [chosenMonth, chosenPageSize, currentPage]);
+  }, [chosenMonth, chosenPageSize, currentPage, currentSortingUrl]);
 
   const getReportData = () => {
     const currentYear = new Date().getFullYear();
@@ -85,15 +102,12 @@ const DataChart = () => {
 
   const getOrderData = () => {
     axios
-      .get(
-        `https://api-car-rental.binaracademy.org/admin/v2/order?sort=created_at%3Adesc&page=${currentPage}&pageSize=${chosenPageSize}`,
-        {
-          headers: { access_token: localStorage.getItem("admin_token") },
-        }
-      )
+      .get(currentSortingUrl, {
+        headers: { access_token: localStorage.getItem("admin_token") },
+      })
       .then((res) => {
         setOrderData(res.data.orders);
-        setTotalPages(res.data.totalPages);
+        setTotalPages(res.data.pageCount);
       });
   };
 
@@ -101,11 +115,12 @@ const DataChart = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        display: false,
       },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        text: "Amount of Car Rental",
+        position: "left",
       },
     },
   };
@@ -126,30 +141,13 @@ const DataChart = () => {
         {
           label: "Dataset 1",
           data: repData.map((item) => item.orderCount),
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
+          backgroundColor: "rgba(88, 107, 144, 0.5)",
         },
       ],
     };
 
     finalChartData = <Bar options={options} data={data} />;
   }
-
-  const PageJumpSelector = ({ currentPage, totalPages, onPageJump }) => {
-    const jumpToPageOptions = Array.from(
-      { length: totalPages },
-      (_, index) => index + 1
-    );
-
-    return (
-      <select value={currentPage} onChange={onPageJump}>
-        {jumpToPageOptions.map((page) => (
-          <option key={page} value={page}>
-            Page {page}
-          </option>
-        ))}
-      </select>
-    );
-  };
 
   const PageNavButton = ({ currentPage, totalPages, onPageChange }) => {
     return (
@@ -173,7 +171,10 @@ const DataChart = () => {
     return (
       <select value={pageSize} onChange={onPageSizeChange}>
         <option value={10}>10</option>
+        <option value={15}>15</option>
         <option value={20}>20</option>
+        <option value={25}>25</option>
+        <option value={30}>30</option>
       </select>
     );
   };
@@ -181,21 +182,36 @@ const DataChart = () => {
     <div>
       <MonthSelector selectedMonth={chosenMonth} onChange={handleMonthChange} />
       {finalChartData}
+      <Container className="d-flex justify-content-center">
+        <p>Date</p>
+      </Container>
       <DataTable dataorder={orderData} />
-      <PageSizeSelector
-        pageSize={chosenPageSize}
-        onPageSizeChange={handlePageSizeChange}
-      />
-      <PageJumpSelector
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageJump={handlePageJump}
-      />
-      <PageNavButton
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-around">
+          <div>
+            <PageSizeSelector
+              pageSize={chosenPageSize}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          </div>
+          <div>
+            <select value={currentPage} onChange={handlePageJump}>
+              {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+                (page) => (
+                  <option key={page} value={page}>
+                    Page {page}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+        </div>
+        <PageNavButton
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      </div>
     </div>
   );
 };

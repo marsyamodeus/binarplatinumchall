@@ -1,30 +1,11 @@
-.table-container {
-  width: 100%;
-  overflow-x: auto;
-}
+.custom-table {
+  th {
+    background-color: #cfd4ed;
+  }
 
-.styled-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  text-align: left;
-}
-
-.styled-table th,
-.styled-table td {
-  padding: 12px 15px;
-}
-
-.styled-table thead th {
-  background-color: #f2f2f2;
-  color: #333;
-  font-weight: 700;
-}
-
-.styled-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.styled-table tbody tr:hover {
-  background-color: #ddd;
+  tbody tr {
+    td {
+      color: white; /* Set the text color for table rows */
+    }
+  }
 }

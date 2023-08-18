@@ -45,9 +45,9 @@ const CMScars = () => {
   });
   const searchTerm = useSelector((state) => state.search.searchTerm);
   const filteredData = data.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    item.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  console.log(filteredData);
   const getDetailedData = async () => {
     try {
       const res = await axios.get(
@@ -139,19 +139,27 @@ const CMScars = () => {
               deleteButton={() => handleDelete(modalId)}
             />
           )}{" "}
-          {filteredData.map((item) => (
-            <Col className="pb-4">
-              <Carscard
-                carimage={item.image}
-                carname={item.name}
-                carsize={item.category}
-                carprice={item.price}
-                carupdate={item.updatedAt}
-                caredit={() => goToSearch(item.id)}
-                cardelete={() => handleModal(item.id)}
-              />
-            </Col>
-          ))}{" "}
+          <Col className="pb-4">
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "20px",
+              }}
+            >
+              {filteredData.map((item) => (
+                <Carscard
+                  carimage={item.image}
+                  carname={item.name}
+                  carsize={item.category}
+                  carprice={item.price}
+                  carupdate={item.updatedAt}
+                  caredit={() => goToSearch(item.id)}
+                  cardelete={() => handleModal(item.id)}
+                />
+              ))}
+            </div>{" "}
+          </Col>
         </Row>
       </Col>
     </div>

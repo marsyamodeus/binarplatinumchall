@@ -1,10 +1,204 @@
-.mainwrapper {
-  background: "#F4F5F7";
+.background {
+  background-color: #f4f5f7;
+  height: 100%;
 }
 
-.contentwrapper {
-  padding-left: 245px;
+.sidenav {
+  align-items: center;
+  margin-top: 70px;
+  top: 0;
+  left: 0;
+  position: sticky;
+  height: 100vh;
+  width: 250px;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+.sidenav p {
+  padding: 10px 20px;
+  text-align: left;
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+  color: #777778;
+}
+
+.sidenav a {
+  font-weight: bold;
+  padding: 15px 20px;
+  text-align: left;
+  text-decoration: none;
+  color: rgb(10, 10, 10);
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.sidenav a:hover {
+  background-color: #cfd4ed;
+}
+
+.sidenav.open {
+  width: 0;
+}
+/* ============== */
+.topnav {
+  padding-left: 70px;
+  width: 100%;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+}
+
+.sidebar {
   display: flex;
-  justify-content: end;
   flex-direction: column;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 100vh;
+  background-color: #0d28a6;
+  align-items: center;
+  z-index: 1000;
+}
+
+.sidebar p {
+  font-size: 10px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.content {
+  min-width: 1180px;
+  margin-top: 30px;
+  padding-top: 70px;
+  margin-left: 315px;
+}
+
+.home-icon,
+.cars-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  width: 70px;
+  padding: 10px 0px;
+}
+
+.cars-icon {
+  margin-top: 10px;
+}
+.burger-icon {
+  padding: 10px;
+}
+
+.home-icon:hover,
+.burger-icon:hover,
+.rec-icon:hover,
+.cars-icon:hover {
+  background-color: rgb(225, 225, 225, 0.5); /* Change the color on hover */
+}
+
+.rectangle {
+  margin: 18px;
+}
+
+.topnav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 100px;
+  z-index: 1000;
+}
+
+.right-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 50px;
+}
+
+.left-nav {
+  float: left;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content:hover {
+  background-color: #4b63cb;
+  color: white;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.search-form {
+  display: flex;
+  flex-direction: row;
+}
+.search-icon {
+  position: absolute;
+  left: 10px;
+  pointer-events: none;
+}
+
+.search-form input[type="text"] {
+  padding: 5px 0 5px 30px;
+  border-color: D0D0D0;
+  border-style: solid;
+}
+
+.search-button {
+  color: #0d28a6;
+  background-color: #ffffff;
+  border-color: #0d28a6;
+  border-style: solid;
+  padding: 5px 20px;
+}
+
+.search-button-wrap {
+  padding: 2.5px 20px 0 5px;
+}
+
+.colored-circle {
+  text-align: center;
+  display: inline-block;
+  width: 38px;
+  height: 38px;
+  background-color: #cfd4ed; /* Replace with your desired background color */
+  color: #151515 /* Set the text color */;
+  text-align: center;
+  line-height: 38px;
+  border-radius: 50%; /* Create a circular shape */
+  margin: 0px 5px;
 }
